@@ -1,6 +1,77 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Nunito-Regular";
-  }
+body{
+  background-color: var(--background-1);
+}
+
+.home{
+  height: 100vh;
+  width: 100%;
+}
+
+.container-home{
+  height: 10%;
+  width: 100%;
+}
+
+.img-card-home div{
+  background-color: var(--button-1);
+  height: 60%;
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+}
+
+.img-card-home{
+  display: flex;
+  height: 100%;
+  align-items: center;
+  width: 40%;
+  justify-content: space-evenly;
+}
+
+.text-card-home{
+  color: var(--color-1);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  width: 30%;
+  justify-content: center;
+}
+
+.card-home{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.container-note{
+  height: 78%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.container-add{
+  height: 12%;
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding-right:2rem;
+}
+
+.container-add div{
+  background-color: var(--background-1);
+  height: 70%;
+  width: 17%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 60px;
+  box-shadow: 1px  5px 15px 10px rgba(0, 0, 0, 0.2);
+}
