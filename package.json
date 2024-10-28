@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "start": "node --watch --env-file .env ./api/app.js",
     "lint": "eslint .",
     "preview": "vite preview"
   },

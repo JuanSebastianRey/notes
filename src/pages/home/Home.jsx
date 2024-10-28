@@ -5,6 +5,7 @@ import center from '../../assets/img/rafiki.png';
 import add from '../../assets/img/add.png';
 import trash from '../../assets/img/delete.png'
 import './Home.css';
+import { Link } from 'react-router-dom';
 
 export default function Home() {
     const [notes, setNotes] = useState([]);
@@ -19,15 +20,15 @@ export default function Home() {
         setNotes([...notes, newNote]);
     };
 
-    const startPress = (noteId) => {
+    const startPress = (e, noteId) => {
         if (pressTimer) {
             clearTimeout(pressTimer);
         }
-        
+
         const timer = setTimeout(() => {
             setLongPressedNote(noteId);
         }, 2000);
-        
+
         setPressTimer(timer);
     };
 
@@ -38,7 +39,9 @@ export default function Home() {
         }
     };
 
-    const deleteNote = (noteId) => {
+    const deleteNote = (e, noteId) => {
+        e.preventDefault(); // Prevenir la navegación solo cuando estamos eliminando
+        
         if (longPressedNote === noteId) {
             setNotes(notes.filter(note => note.id !== noteId));
             setLongPressedNote(null);
@@ -62,7 +65,7 @@ export default function Home() {
                     </div>
                 </div>
             </header>
-            
+
             <section className='container-note'>
                 {notes.length === 0 ? (
                     <>
@@ -72,21 +75,28 @@ export default function Home() {
                 ) : (
                     <div className='notes-container'>
                         {notes.map((note) => (
-                            <div
-                                key={note.id}
-                                className={`note ${longPressedNote === note.id ? 'delete-mode' : ''}`}
-                                onMouseDown={() => startPress(note.id)}
-                                onMouseUp={endPress}
-                                onMouseLeave={endPress}
-                                onTouchStart={() => startPress(note.id)}
-                                onTouchEnd={endPress}
-                                onTouchCancel={endPress}
-                                onClick={() => deleteNote(note.id)}
-                            >
+                            <div key={note.id}>
                                 {longPressedNote === note.id ? (
-                                    <img src={trash} />
+                                    <div
+                                        className="note delete-mode"
+                                        onClick={(e) => deleteNote(e, note.id)}
+                                    >
+                                        <img src={trash} alt="delete" />
+                                    </div>
                                 ) : (
-                                    <h3>{note.title}</h3>
+                                    <Link to='/notes'>
+                                        <div
+                                            className="note"
+                                            onMouseDown={(e) => startPress(e, note.id)}
+                                            onMouseUp={endPress}
+                                            onMouseLeave={endPress}
+                                            onTouchStart={(e) => startPress(e, note.id)}
+                                            onTouchEnd={endPress}
+                                            onTouchCancel={endPress}
+                                        >
+                                            <h3>{note.title}</h3>
+                                        </div>
+                                    </Link>
                                 )}
                             </div>
                         ))}
